@@ -36,7 +36,7 @@ def analyze():
             return jsonify({"error": "Thiếu mã cổ phiếu"}), 400
             
         if not api_key:
-            return jsonify({"error": "Thiếu API Key. Vui lòng cấu hình trên Render."}), 400
+            return jsonify({"error": "Thiếu API Key. Vui lòng cấu hình trên Vercel Settings -> Environment Variables."}), 400
 
         # Normalize Ticker
         ticker = "".join(filter(str.isalnum, ticker)).upper()

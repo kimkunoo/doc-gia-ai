@@ -27,6 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Tab Switching Logic ---
     const navLinks = document.querySelectorAll('.nav-links li');
     const tabContents = document.querySelectorAll('.tab-content');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+
+    // Mobile Menu Toggle
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-xmark');
+    });
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -36,6 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Toggle active state on links
             navLinks.forEach(nl => nl.classList.remove('active'));
             link.classList.add('active');
+
+            // Close sidebar on mobile after click
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.remove('open');
+                menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+            }
 
             // Toggle active state on pages
             tabContents.forEach(content => {
@@ -49,6 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    });
+
+    // Auto Resize Chart
+    window.addEventListener('resize', () => {
+        if (chart) {
+            chart.applyOptions({
+                width: chartArea.clientWidth,
+                height: window.innerWidth <= 768 ? 350 : 400
+            });
+        }
     });
 
     // --- Chart Initialization ---

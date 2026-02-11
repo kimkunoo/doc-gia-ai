@@ -571,3 +571,145 @@ body {
     display: flex;
     gap: 2rem;
 }
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Mobile Header (Hidden by default) */
+.mobile-header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(15, 15, 25, 0.98);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 200;
+    backdrop-filter: blur(10px);
+}
+
+.mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+.menu-toggle {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Tablets & Small Laptops */
+@media (max-width: 1024px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 80px;
+        /* Offset for Mobile Header */
+    }
+
+    .mobile-header {
+        display: flex;
+    }
+
+    .main-grid {
+        grid-template-columns: 1fr;
+        /* Stack Strategy Hub below Chart */
+    }
+
+    .terminal-overlay {
+        width: 90%;
+        height: 60vh;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+    .ticker-header {
+        padding: 1.5rem;
+    }
+
+    #tickerSymbol {
+        font-size: 2.5rem;
+    }
+
+    .current-price {
+        font-size: 2rem;
+    }
+
+    .fast-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2x2 grid */
+        gap: 1rem;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .search-wraper {
+        max-width: none;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 350px;
+    }
+
+    .analysis-layers {
+        margin-top: 1rem;
+    }
+
+    .page-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .footer-bottom-row {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .footer-right {
+        justify-content: center;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+    .fast-metrics {
+        grid-template-columns: 1fr;
+        /* 1 column grid */
+    }
+
+    #tickerSymbol {
+        font-size: 2rem;
+    }
+
+    .terminal-overlay {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+}

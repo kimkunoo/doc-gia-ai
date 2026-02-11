@@ -36,8 +36,7 @@ def analyze():
             return jsonify({"error": "Thiếu mã cổ phiếu"}), 400
             
         if not api_key:
-            # Fallback if no key is provided and no env var exists
-            api_key = "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"
+            return jsonify({"error": "Thiếu API Key. Vui lòng cấu hình trên Render."}), 400
 
         # Normalize Ticker
         ticker = "".join(filter(str.isalnum, ticker)).upper()

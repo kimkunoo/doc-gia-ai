@@ -38,8 +38,8 @@ class NukidaHandler(http.server.SimpleHTTPRequestHandler):
                     return
                 
                 if not api_key:
-                    # FALLBACK: Use provided API Key if not present
-                    api_key = "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"
+                    self._send_response(400, {"error": "Thiếu API Key. Vui lòng cấu hình PPLX_API_KEY trong môi trường."})
+                    return
 
                 # Normalize Ticker
                 ticker = filter(str.isalnum, ticker)
